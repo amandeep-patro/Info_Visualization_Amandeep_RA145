@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://d3js.org/d3.v7.min.js">
+        </script>
+    </head>
+    <body>
+        <div class="v1">
+            <script>
+                data=[11,19,12,14,13,17,18,19,9,20,15,16,22,4,9,13];
+                var sorteddata=data.sort(d3.ascending);
+
+                var boxplot=d3.selectAll('div.v1')
+                .append("svg")
+                .attr('width','600')
+                .attr('height','230')
+               
+                console.log(sorteddata);
+
+                var q1=d3.quantile(sorteddata,0);
+                var q2=d3.quantile(sorteddata,0.85);
+                var q3=d3.quantile(sorteddata,100);
+                
+
+                var min= d3.min(data);
+                var max= d3.max(data);
+
+                var y= d3.scaleLinear().domain([min,max]).range([200,0]);
+                boxplot.append('g')
+                .attr("transform","translate(" +20+ "," +10+ ")")
+                .call(d3.axisLeft(y));
+
+                var x= d3.scalePoint().domain(["price"]).range([0,200]);
+                boxplot.append('g')
+                .attr("transform","translate(" +20+ "," +210+ ")")
+                .call(d3.axisBottom(x));
+
+                boxplot.append('line')
+                .attr("x1",x("price")+20)
+                .attr("y1",y(min))
+                .attr("x2",x("price")+20)
+                .attr("y2",y(max))
+                .attr("stroke","black")
+
+                boxplot.append('rect')
+                .attr("x",x("price")+20-15)
+                .attr("y",y(q3))
+                .attr("width",15*2)
+                .attr("height",y(q1)-y(q3))
+                .attr("fill","red")
+                .attr("stroke","black")
+
+                boxplot.append('line')
+                .attr("x1",x("price")+20-15)
+                .attr("y1",y(q2))
+                .attr("x2",x("price")+20+15)
+                .attr("y2",y(q2))
+                .attr("stroke","black")
+
+                boxplot.append('line')
+                .attr("x1",x("price")+20-15)
+                .attr("y1",y(q4))
+                .attr("x2",x("price")+20+15)
+                .attr("y2",y(q4))
+                .attr("stroke","black")
+
+
+
+                
+
+                
+            </script>
+        </div>
+
+    </body>
+</html>

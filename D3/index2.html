@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        svg {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button id="submit-btn">Submit</button>
+        <svg width="200" height="200"></svg>
+    </div>
+    <script>
+        // Function to generate a random color
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Create an SVG container and a circle
+        const svg = d3.select("svg");
+        const circle = svg.append("circle")
+            .attr("cx", 100)
+            .attr("cy", 100)
+            .attr("r", 50)
+            .attr("fill", "gray");
+
+        const svg1 = d3.select("svg");
+        const circle1 = svg1.append("circle")
+            .attr("cx", 0)
+            .attr("cy", 200)
+            .attr("r", 50)
+            .attr("fill", "gray");
+
+        const svg2 = d3.select("svg");
+        const circle2 = svg1.append("circle")
+            .attr("cx", 200)
+            .attr("cy", 200)
+            .attr("r", 50)
+            .attr("fill", "gray");
+
+        const svg3 = d3.select("svg");
+        const circle3 = svg1.append("circle")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", 50)
+            .attr("fill", "gray");
+
+        const svg4 = d3.select("svg");
+        const circle4 = svg1.append("circle")
+            .attr("cx", 200)
+            .attr("cy", 0)
+            .attr("r", 50)
+            .attr("fill", "gray");
+
+
+        // Set up event listener for button click
+        d3.select("#submit-btn").on("click", function () {
+            circle.style("fill", getRandomColor());
+            circle1.style("fill", getRandomColor());
+            circle2.style("fill", getRandomColor());
+            circle3.style("fill", getRandomColor());
+            circle4.style("fill", getRandomColor());
+        });
+    </script>
+</body>
+
+</html>

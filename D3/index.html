@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .div1 p {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <p>information visualization</p>
+        <div class="chut">
+
+        </div>
+        <br>    
+        <button onclick="func1()">Submit</button>
+    </div>
+    <script>
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function func1() {
+            const randomColor = getRandomColor();
+            d3.select(".div1")
+              .select("p")
+              .style("color", randomColor);
+        }
+        var canva1 = d3.selectAll("div.chut")
+        .append('svg')
+        .attr("width", 600)
+        .attr("height", 600)
+        .style("background", "black")
+    </script>
+</body>
+</html>
